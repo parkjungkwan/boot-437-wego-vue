@@ -21,13 +21,15 @@
 </template>
 <script>
 import axios from "axios"
+import {store} from "../../store"
 export default {
     data () {
        return {
            context: 'http://localhost:8080/',
            result: '',
            userid:'',
-           passwd:''
+           passwd:'',
+           person:{}
        }
     },
     methods : {
@@ -46,8 +48,15 @@ export default {
           axios
           .post(url, data, headers)
           .then(res=>{
-              this.result = res.data
-              alert(`로그인성공 ${this.result.userid}`)
+              if(res.data.result === "SUCCESS"){
+                alert(`로그인성공 ${this.userid}`)
+                this.person = res.data.person
+                store.state.loginedUid = this.person.userid
+                alert(`스토어에 저장성공 ${store.state.loginedUid}`)
+              }else{
+                alert(`로그인실패`)
+              }
+              
           })
           .catch(()=>{
               alert('AXIOS 실패')
