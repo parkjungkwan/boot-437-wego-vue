@@ -29,7 +29,7 @@ export default{
 				{menu:"목록",link:"/list"},
 				{menu:"글수정",link:"/update"},
 				{menu:"글삭제",link:"/remove"},
-				{menu:"검색",link:"/search"},
+				{menu:"검색",link:"/search"}
 			]
 		}
 	}
