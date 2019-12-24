@@ -2,19 +2,18 @@
   <table>
     <tr>
       <td>
-        <legend><h3>비밀번호 </h3></legend>
-      <h5>{{person.passwd}}</h5>
+        <legend><h3>비밀번호 변경</h3></legend>
+      <input type="text" name="pwd" size="20" placeholder="기존 비밀번호 입력" v-model="person.pwd"  style="float: none; width: 70%;">
       <button>수정</button><br/><br/>
       </td>
     </tr>
     <tr>
       <td><legend><h3>학생부 관리</h3></legend>
-      <h5>{{person.hak}} 학년</h5>
-      <h5>{{person.ban}} 반</h5>
-      <h5>{{person.score}}점</h5>
+      <input type="text" name="pwd" size="20" placeholder="변경할 학년  입력" v-model="person.hak" style="float: none;width: 70%;"> 학년
+      <input type="text" name="pwd" size="20" placeholder="변경할 반 입력" v-model="person.ban"  style="float: none;width: 70%;"> 반
+      <input type="text" name="pwd" size="20" placeholder="변경할 성적 입력" v-model="person.score"   style="float: none;width: 70%;"> 점
       <br/><br/>
-      <button @click.prevent="goUpdate">수정</button>
-      </td>
+      <button style="height: 20%; width: 70%; float: none;" @click.prevent="modify">수정</button></td>
     </tr>
   </table>
 </template>
@@ -39,9 +38,7 @@ export default{
 		
 	},
   methods  : {
-    goUpdate(){
-      this.$router.push({path: '/myPageUpdate'})
-    }
+    
   }
 }
 </script>
