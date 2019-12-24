@@ -3,8 +3,7 @@
 		<layout>
 			<template #header="header">
 				<h1>{{header.title}}</h1>
-				<router-link to="/login">로그인</router-link>
-				<router-link to="/join">회원가입</router-link>
+				<component :is="!loginCheck ? 'pre-auth' : 'post-auth'"></component>
 			</template>
 			<template #sidebar="sidebar">
 				<ul class="menu">
@@ -20,8 +19,11 @@
 </template>
 <script>
 import Layout from "@/components/cmm/Layout.vue"
+import PreAuth from "@/components/cmm/PreAuth.vue"
+import PostAuth from "@/components/cmm/PostAuth.vue"
+import { store } from "@/store"
 export default{
-	components : {Layout},
+	components : {Layout, PreAuth, PostAuth},
 	data(){
 		return {
 			sidebars: [
@@ -32,6 +34,12 @@ export default{
 				{menu:"검색",link:"/search"}
 			]
 		}
+	},
+	computed:{
+		loginCheck: function(){
+			return store.state.authCheck
+		}
+		
 	}
 }
 </script>

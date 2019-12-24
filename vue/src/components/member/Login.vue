@@ -49,14 +49,9 @@ export default {
           .post(url, data, headers)
           .then(res=>{
               if(res.data.result === "SUCCESS"){
-                alert(`로그인성공2 ${this.userid}`)
-                this.person = res.data.person
-                store.state.loginedUid = this.person.userid
-                store.state.loginedPwd = this.person.passwd
-                store.state.name = this.person.name
-                store.state.birthday = this.person.birthday
-                store.state.id = this.person.id
-                alert(`스토어에 저장성공2 ${store.state.name}`)
+                store.state.person = res.data.person
+                store.state.authCheck = true
+                alert(`스토어에 저장성공 ${store.state.authCheck}`)
                 this.$router.push({path: '/myPage'})
               }else{
                 alert(`로그인실패`)
