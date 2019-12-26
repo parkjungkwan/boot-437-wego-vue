@@ -6,12 +6,19 @@
 				<component :is="!loginCheck ? 'pre-auth' : 'post-auth'"></component>
 			</template>
 			<template #sidebar="sidebar">
+				<div v-switch="size">
+					<h1 v-case="'large'">Large</h1>
+					<h2 v-case="'medium'">Medium</h2>
+					<h3 v-case="'small'">Small</h3>
+				</div>
+			</template>
+			<!-- <template #sidebar="sidebar">
 				<ul class="menu">
 					<li v-for="i of sidebars" :key="i.menu" >
 						<router-link :to="i.link">{{i.menu}}</router-link>
 					</li>
 				</ul>
-			</template>
+			</template> -->
 			<template #content="content"><router-view/></template>
 			<template #footer="footer">{{footer.title}}</template>
 		</layout>
@@ -22,6 +29,9 @@ import Layout from "@/components/cmm/Layout.vue"
 import PreAuth from "@/components/cmm/PreAuth.vue"
 import PostAuth from "@/components/cmm/PostAuth.vue"
 import { store } from "@/store"
+
+ 
+
 export default{
 	components : {Layout, PreAuth, PostAuth},
 	data(){
@@ -32,7 +42,8 @@ export default{
 				{menu:"글수정",link:"/update"},
 				{menu:"글삭제",link:"/remove"},
 				{menu:"검색",link:"/search"}
-			]
+			],
+			size: 'medium'
 		}
 	},
 	computed:{

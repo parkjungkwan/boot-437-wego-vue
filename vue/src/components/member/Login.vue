@@ -52,7 +52,12 @@ export default {
                 store.state.person = res.data.person
                 store.state.authCheck = true
                 alert(`스토어에 저장성공 ${store.state.authCheck}`)
-                this.$router.push({path: '/myPage'})
+                if(store.state.person.roll !== 'student'){
+                    this.$router.push({path: '/admin'})
+                }else{
+                    this.$router.push({path: '/myPage'})
+                }
+                
               }else{
                 alert(`로그인실패`)
                 this.$router.push({path: '/login'})
