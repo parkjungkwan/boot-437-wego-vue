@@ -9,6 +9,6 @@ export const store = new Vuex.Store({
 		person: {},
 		authCheck: false,
 		sidebar: 'preSidebar',
-		headingType: 'preAuth'
+		headerMessage: '공통 화면'
   }
 })
