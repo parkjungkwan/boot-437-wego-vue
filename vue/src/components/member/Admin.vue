@@ -1,10 +1,10 @@
-<template #content="content"><student-list></student-list></template>
+<template #content="content"><students></students></template>
 <script>
-import StudentList from "@/components/member/StudentList.vue"
+import Students from "@/components/student/Students.vue"
 import {store} from "../../store"
 export default{
 	components: {
-		StudentList
+		Students
 	},
 	data(){
 		return {
@@ -12,11 +12,11 @@ export default{
 			name: store.state.name,
 			person : store.state.person,
 			sidebars: [
-						{menu:"학생등록",link:"/write"},
-						{menu:"학생목록",link:"/list"},
-						{menu:"학생정보수정",link:"/update"},
-						{menu:"학생정보삭제",link:"/remove"},
-						{menu:"학생검색",link:"/search"}],
+						{menu:"학생등록",link:"/studentAdd"},
+						{menu:"학생목록",link:"/students"},
+						{menu:"학생정보수정",link:"/studentEdit"},
+						{menu:"학생정보삭제",link:"/studentRemoval"},
+						{menu:"학생검색",link:"/studentFindOne"}],
 			authCheck : true
 		}
 		
