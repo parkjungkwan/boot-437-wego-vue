@@ -7,6 +7,7 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
   state: {
 		person: {},
-		authCheck: false
+		authCheck: false,
+		sidebar: 'preSidebar'
   }
 })

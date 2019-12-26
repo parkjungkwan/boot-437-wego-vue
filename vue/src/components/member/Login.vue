@@ -52,9 +52,11 @@ export default {
                 store.state.person = res.data.person
                 store.state.authCheck = true
                 alert(`스토어에 저장성공 ${store.state.authCheck}`)
-                if(store.state.person.roll !== 'student'){
+                if(store.state.person.role !== 'student'){
+                    store.state.sidebar = 'managerSidebar'
                     this.$router.push({path: '/admin'})
                 }else{
+                    store.state.sidebar = 'studentSidebar'
                     this.$router.push({path: '/myPage'})
                 }
                 
