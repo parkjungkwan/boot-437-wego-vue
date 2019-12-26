@@ -26,10 +26,8 @@ export default {
     data () {
        return {
            context: 'http://localhost:8080/',
-           result: '',
-           userid:'',
-           passwd:'',
-           person:{}
+           userid: '',
+           passwd: ''
        }
     },
     methods : {
@@ -70,7 +68,16 @@ export default {
           })  
           
         }
-    }
+    },
+	computed:{
+		loginCheck: function(){
+			return store.state.authCheck
+		},
+		sidebarCheck: function(){
+			return store.state.sidebar
+		}
+		
+	}
 }
 </script>
 <style scoped>

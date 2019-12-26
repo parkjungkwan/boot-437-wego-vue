@@ -6,20 +6,8 @@
 				<component :is="!loginCheck ? 'pre-auth' : 'post-auth'"></component>
 			</template>
 			<template #sidebar="sidebar">
-				<div v-switch="sidebarCheck">
-					<div v-case="'preSidebar'">
-						<component :is="'pre-sidebar'"></component>
-					</div>
-					<div v-case="'managerSidebar'">
-						<component :is="'manager-sidebar'"></component>
-					</div>
-					<div v-case="'studentSidebar'">
-						<component :is="'student-sidebar'"></component>
-					</div>
-					
-				</div>
+				<component :is="sidebarCheck"></component>
 			</template>
-			<!--<template #sidebar="sidebar"> </template> -->
 			<template #content="content"><router-view/></template>
 			<template #footer="footer">{{footer.title}}</template>
 		</layout>
