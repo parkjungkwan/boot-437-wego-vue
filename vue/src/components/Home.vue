@@ -28,11 +28,6 @@ export default{
 	components : {Layout, PreAuth, PostAuth,
 	ManagerSidebar, PreSidebar, StudentSidebar
 	},
-	data(){
-		return {
-
-		}
-	},
 	computed:{
 		loginCheck: function(){
 			return store.state.authCheck

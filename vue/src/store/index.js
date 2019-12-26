@@ -8,6 +8,7 @@ export const store = new Vuex.Store({
   state: {
 		person: {},
 		authCheck: false,
-		sidebar: 'preSidebar'
+		sidebar: 'preSidebar',
+		headingType: 'preAuth'
   }
 })

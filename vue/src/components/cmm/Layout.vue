@@ -1,7 +1,11 @@
 <template>
 	<div id="wrapper">
 		<header>
-			<slot name="header" :title="header"></slot>
+			<div v-switch="headingCheck">
+                    <h2 v-case="admin">관리자 화면</h2>
+                    <h2 v-case="student">학생화면</h2>
+                    <h2 v-case="preAuth">공통화면 </h2>
+               </div>
 		</header>
 		<aside id="sidebar">
 			<slot name="sidebar"></slot>
@@ -15,6 +19,8 @@
 	</div>
 </template>
 <script>
+import { vSwitch, vCase, vDefault } from 'v-switch-case'
+import {store} from "../../store"
 export default {
 	data(){
 		return {
@@ -22,7 +28,18 @@ export default {
                contnent : '컨텐츠부분',
                footer : '푸터부분'
 		}
+     },
+     directives: {
+          'switch': vSwitch,
+          'case': vCase,
+          'default': vDefault
+     },
+	computed:{
+		headingCheck: function(){
+			return store.state.headingType
+		}
 	}
+		
 }
 </script>
 <style scoped>
