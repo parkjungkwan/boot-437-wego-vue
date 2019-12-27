@@ -79,6 +79,23 @@ public class PersonController {
 				.filter(role-> role.getRole().equals("student"));
 		
 	}
+	@GetMapping("/students/{searchWord}")
+	public Stream<PersonDTO> findSome(@PathVariable String searchWord){
+		switch(searchWord) {
+		case "topByGrade" : break;
+		}
+		//Iterable<Person> entites=personRepository.findByRole("student"); 
+		Iterable<Person> entites = personRepository.findGroupByHak();
+		List<PersonDTO> list = new ArrayList<>();
+		for(Person p: entites) {
+			PersonDTO dto = modelMapper.map(p, PersonDTO.class);
+			list.add(dto);
+		}
+		
+		return list.stream()
+				.filter(role-> role.getRole().equals("student"));
+		
+	}
 }
 
 

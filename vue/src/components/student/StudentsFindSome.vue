@@ -1,7 +1,8 @@
 <template> 
 	<div class="login-form">
     <form>
-        <h2 class="text-center">조건 검색</h2>       
+        <h2 class="text-center">조건 검색</h2>  
+		<a>학년별 1등과 최하위 학</a>     
         <div class="form-group">
             <input v-model="searchWord" type="text" class="form-control" placeholder="Username" required="required">
         </div>
