@@ -1,7 +1,7 @@
 <template> 
 	<div class="login-form">
     <form>
-        <h2 class="text-center">검색</h2>       
+        <h2 class="text-center">조건 검색</h2>       
         <div class="form-group">
             <input v-model="searchWord" type="text" class="form-control" placeholder="Username" required="required">
         </div>
@@ -27,9 +27,9 @@
 	<td>{{j.score}}</td>
 	<td>{{j.role}}</td>
 	</tr>
-	</table>
+	</table>-->
 	</div>
-	-->
+	
 </template>
 <script>
 import axios from 'axios'
@@ -40,16 +40,19 @@ export default{
 			list: []
 		}
 	},
-	created(){
-		axios
-		.get(`${this.context}/students`)
-		.then(res =>{
-			this.list = res.data
-		})
-		.catch(e=>{
-			alert('AXIOS FAIL'+e)
-		})
+	methods : {
+		find(){
+			axios
+			.get(`${this.context}/students`)
+			.then(res =>{
+				this.list = res.data
+			})
+			.catch(e=>{
+				alert('AXIOS FAIL'+e)
+			})
+		}
 	}
+	
 }
 </script>
 <style scoped>
