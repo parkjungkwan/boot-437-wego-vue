@@ -48,7 +48,7 @@ public class Person {
 	private int score;
 	@Column(name="ROLE", nullable=false)
 	private String role;
-	
+	enum Level{HIGH, MID, LOW}
 	
 	
 }

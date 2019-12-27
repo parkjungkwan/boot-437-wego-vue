@@ -29,6 +29,7 @@ public class PersonController {
 	@Autowired private Printer printer;
 	@Autowired private Person person;
 	@Autowired ModelMapper modelMapper;
+	@Autowired PersonService personService;
 	@Bean public ModelMapper modelMapper() {return new ModelMapper();}
 	
 	@RequestMapping("/")
@@ -79,10 +80,13 @@ public class PersonController {
 				.filter(role-> role.getRole().equals("student"));
 		
 	}
-	@GetMapping("/students/{searchWord}")
+	@GetMapping("/students/search/{searchWord}")
 	public Stream<PersonDTO> findSome(@PathVariable String searchWord){
+		personService.findByHak();
 		switch(searchWord) {
-		case "topByGrade" : break;
+		case "topByGrade" : 
+			
+			break;
 		}
 		//Iterable<Person> entites=personRepository.findByRole("student"); 
 		Iterable<Person> entites = personRepository.findGroupByHak();

@@ -12,4 +12,5 @@ public interface PersonRepository extends CrudRepository<Person, Long> {
 	public Person findByUserid(String userid);
 	@Query(value="SELECT * FROM PERSON GROUP BY HAK", nativeQuery=true)
 	public List<Person> findGroupByHak();
+	public List<Person> findByRole(String role);
 }
