@@ -1,12 +1,19 @@
 package com.wego.web.person;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Stream;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,12 +25,11 @@ import com.wego.web.util.Printer;
 @RestController
 @CrossOrigin(origins = "http://localhost:8081")
 public class PersonController {
-	@Autowired
-	private PersonRepository personRepository;
-	@Autowired
-	private Printer printer;
-	@Autowired
-	private Person person;
+	@Autowired private PersonRepository personRepository;
+	@Autowired private Printer printer;
+	@Autowired private Person person;
+	@Autowired ModelMapper modelMapper;
+	@Bean public ModelMapper modelMapper() {return new ModelMapper();}
 	
 	@RequestMapping("/")
 	public String index() {
@@ -50,8 +56,35 @@ public class PersonController {
 		}else {
 			printer.accept("로그인 실패");
 			map.put("result", "FAIL");
-			map.put("result", person);
+			map.put("person", person);
 		}
 		return map;
 	}
+	@DeleteMapping("/withdrawal/{userid}")
+	public void withdrawal(@PathVariable String userid) {
+		personRepository
+		.delete(personRepository
+				.findByUserid(userid));
+	}
+	@GetMapping("/students")
+	public Stream<PersonDTO> list(){
+		//Iterable<Person> entites=personRepository.findByRole("student"); 
+		Iterable<Person> entites = personRepository.findAll();
+		List<PersonDTO> list = new ArrayList<>();
+		for(Person p: entites) {
+			PersonDTO dto = modelMapper.map(p, PersonDTO.class);
+			list.add(dto);
+		}
+		return list.stream()
+				.filter(role-> role.getRole().equals("student"));
+		
+	}
 }
+
+
+
+
+
+
+
+
