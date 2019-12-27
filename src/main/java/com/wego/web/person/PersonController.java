@@ -84,11 +84,25 @@ public class PersonController {
 	public Stream<PersonDTO> findSome(@PathVariable String searchWord){
 		personService.findByHak();
 		switch(searchWord) {
-		case "topByGrade" : 
-			
-			break;
+			case "namesOfStudents" :break;
+			case "streamToArray" :break;
+			case "streamToMap" :break;
+			case "theNumberOfStudents" :break;
+			case "totalScore" :break;
+			case "topStudent" :break;
+			case "getStat" :break;
+			case "nameList" :break;
+			case "partioningByGender" :break;
+			case "partioningCountPerGender" :break;
+			case "partioningTopPerGender" :break;
+			case "partioningRejectPerGender" :break;
+			case "groupingByBan" :break;
+			case "groupingByGrade" :break;
+			case "groupingByCountByLevel" :break;
+			case "groupingByHakAndBan" :break;
+			case "groupingTopByHakAndBan" :break;
+			case "groupingByStat" :break;
 		}
-		//Iterable<Person> entites=personRepository.findByRole("student"); 
 		Iterable<Person> entites = personRepository.findGroupByHak();
 		List<PersonDTO> list = new ArrayList<>();
 		for(Person p: entites) {
