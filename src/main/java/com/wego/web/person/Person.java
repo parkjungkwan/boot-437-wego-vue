@@ -24,7 +24,7 @@ import lombok.Data;
 		)
 	})
 @Component
-public class Person {
+public class Person implements Comparable<Person>{
 	@Id
 	@GeneratedValue
 	@Column(name="ID", nullable=false) 
@@ -49,6 +49,10 @@ public class Person {
 	@Column(name="ROLE", nullable=false)
 	private String role;
 	enum Level{HIGH, MID, LOW}
+	@Override
+	public int compareTo(Person o) {
+		return o.score - this.score;
+	}
 	
 	
 }
