@@ -61,7 +61,8 @@ public class PersonService {
 				.collect(Collectors.groupingBy(s->{
 					if(s.getScore()>= 80) return Person.Level.HIGH;
 					else if(s.getScore()>=50)return Person.Level.MID;
-					else return Person.Level.LOW;}, Collectors.counting()
+					else 					return Person.Level.LOW;}, 
+						Collectors.counting()
 				));
 				
 				
@@ -84,6 +85,26 @@ public class PersonService {
 								Collectors.maxBy(Comparator
 										.comparingInt(Person::getScore)),
 								Optional::get))));
+	}
+	public Object multiGroupingGrade() {
+		// 6. 다중그룹화 + 통계(학년별, 반별 성적그룹)
+		return personRepository.findGroupByHak().stream()
+				.collect(Collectors.groupingBy(s-> s.getHak()+"-"+ s.getBan(),
+						Collectors.mapping(s->{
+							if(s.getScore()>= 80) return Person.Level.HIGH;
+							else if(s.getScore()>=50)return Person.Level.MID;
+							else 					return Person.Level.LOW;},
+							Collectors.toSet())));
+						
+	}
+	// partioningBy()
+	public Object partioningByGender() {
+		// 1.단순분할 (성별로 분할)
+		Map<Boolean, List<Person>> map = personRepository.findGroupByHak().stream()
+		.collect(Collectors.partitioningBy(Person::isMale));
+		List<Person> malePerson = map.get(true);
+		List<Person> femalePerson = map.get(false);
+		return malePerson;
 	}
 
 }

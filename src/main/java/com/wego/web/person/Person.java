@@ -38,8 +38,8 @@ public class Person {
 	@Temporal(TemporalType.DATE)
 	@Column(name="BIRTHDAY", nullable=false) 
 	private Date birthday;
-	@Column(name="GENDER", nullable=false)
-	private String gender;
+	@Column(name="MALE", nullable=false)
+	private boolean male;
 	@Column(name="HAK", nullable=false)
 	private int hak;
 	@Column(name="BAN", nullable=false)
