@@ -12,14 +12,20 @@ import com.wego.web.proxy.Proxy;
 
 @Component
 public class PersonInit extends Proxy implements ApplicationRunner  {
+	@SuppressWarnings("unused")
 	private PersonRepository personRepository;
-	private static final DateFormat df = new SimpleDateFormat("yyyy-truetrue-dd");
+	private static final DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 	@Autowired
 	public PersonInit(PersonRepository personRepository) {
 		this.personRepository = personRepository;
 	}
-
 	@Override
+	public void run(ApplicationArguments args) throws Exception {
+		
+		
+	}
+
+	/*@Override
 	public void run(ApplicationArguments args) throws Exception {
 		long count = personRepository.count();
 		if (count == 0) {
@@ -62,6 +68,6 @@ public class PersonInit extends Proxy implements ApplicationRunner  {
 
 		}
 
-	}
+	}*/
 
 }

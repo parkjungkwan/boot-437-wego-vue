@@ -5,10 +5,12 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.stereotype.Component;
 
@@ -19,24 +21,24 @@ import lombok.Data;
 @Table(name="ARTICLE")
 public class Article {
 	@Id
-	@GeneratedValue
-	@Column(name="ID", nullable=false) 
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="ID")@NotNull 
 	private Long id;
-	@Column(name="USERID",length = 64, nullable=false) 
+	@Column(name="USERID") @NotNull
 	private String userid;
-	@Column(name="COMMENTS",length = 64, nullable=false) 
+	@Column(name="COMMENTS") 
 	private String comments;
-	@Column(name="TITLE",length = 64, nullable=false) 
+	@Column(name="TITLE") @NotNull
 	private String title;
-	@Column(name="CONTENTS",length = 64, nullable=false) 
+	@Column(name="CONTENTS") @NotNull
 	private String content;
-	@Column(name="IMG",length = 64, nullable=false) 
+	@Column(name="IMG") 
 	private String img;
-	@Column(name="BOARDTYPE",length = 64, nullable=false) 
+	@Column(name="BOARDTYPE") @NotNull
 	private String boardtype;
-	@Column(name="RATING",length = 64, nullable=false) 
+	@Column(name="RATING") 
 	private String rating;
 	@Temporal(TemporalType.DATE)
-	@Column(name="REGDATE", nullable=false) 
+	@Column(name="REGDATE") @NotNull
 	private Date regdate;
 }
