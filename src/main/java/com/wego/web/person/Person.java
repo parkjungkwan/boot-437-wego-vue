@@ -1,5 +1,6 @@
 package com.wego.web.person;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -14,19 +15,32 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
+
+import com.wego.web.proxy.Proxy;
 
 import lombok.Builder;
-import lombok.Data;
-@Data
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.AccessLevel;
+
+@Component
 @Entity
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
+@Getter
+@Setter(AccessLevel.PROTECTED)
+@ToString
 @Table(name="PERSON",
 	   uniqueConstraints={
 		@UniqueConstraint(
 			columnNames={"USERID"}
 		)
 	})
-@Component
-public class Person {
+
+public class Person extends Proxy implements Serializable{
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="ID") @NotNull
@@ -54,9 +68,15 @@ public class Person {
 	
 	
 	@Builder
-	public Person( String userid,  String passwd,  String name,  
+	private Person(String userid,  String passwd,  String name,  
 			Date birthday, boolean male,  int hak,  int ban,  int score) {
-		super();
+		Assert.hasText(userid, "bankName must not be empty");
+	    Assert.hasText(passwd, "accountNumber must not be empty");
+	    Assert.hasText(name, "accountHolder must not be empty");
+	    Assert.hasText(string(male), "accountNumber must not be empty");
+	    Assert.hasText(string(hak), "accountHolder must not be empty");
+	    Assert.hasText(string(ban), "accountHolder must not be empty");
+	    Assert.hasText(string(score), "accountHolder must not be empty");
 		this.userid = userid;
 		this.passwd = passwd;
 		this.name = name;
