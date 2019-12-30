@@ -19,13 +19,15 @@ public class PersonInit extends Proxy implements ApplicationRunner  {
 	public PersonInit(PersonRepository personRepository) {
 		this.personRepository = personRepository;
 	}
+	
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		
 		
 	}
-
-	/*@Override
+	
+	/*
+	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		long count = personRepository.count();
 		if (count == 0) {

@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Stream;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wego.web.util.Printer;
@@ -68,12 +66,12 @@ public class PersonController {
 				.findByUserid(userid));
 	}
 	@GetMapping("/students")
-	public Stream<PersonDTO> list(){
+	public Stream<Person> list(){
 		//Iterable<Person> entites=personRepository.findByRole("student"); 
 		Iterable<Person> entites = personRepository.findAll();
-		List<PersonDTO> list = new ArrayList<>();
+		List<Person> list = new ArrayList<>();
 		for(Person p: entites) {
-			PersonDTO dto = modelMapper.map(p, PersonDTO.class);
+			Person dto = modelMapper.map(p, Person.class);
 			list.add(dto);
 		}
 		return list.stream()
@@ -83,9 +81,9 @@ public class PersonController {
 	
 	
 	@GetMapping("/students/search/{searchWord}")
-	public Stream<PersonDTO> findSome(@PathVariable String searchWord){
+	public Stream<Person> findSome(@PathVariable String searchWord){
 		printer.accept("넘어온 검색어: "+searchWord);
-		List<PersonDTO> personDTOs = new ArrayList<>();
+		List<Person> personDTOs = new ArrayList<>();
 		List<Person> persons = new ArrayList<>();;
 		String switchKey = "";
 		switch(searchWord) {
@@ -138,7 +136,7 @@ public class PersonController {
 				Iterable<Person> entites = personRepository.findGroupByHak();
 				personDTOs = new ArrayList<>();
 				for(Person p: entites) {
-					PersonDTO dto = modelMapper.map(p, PersonDTO.class);
+					Person dto = modelMapper.map(p, Person.class);
 					personDTOs.add(dto);
 				}
 				
