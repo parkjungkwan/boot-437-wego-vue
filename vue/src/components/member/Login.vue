@@ -21,6 +21,8 @@
 </template>
 <script>
 import axios from "axios"
+import Constant from '@/store/mutation_types'
+import { mapMutations } from 'vuex'
 
 export default {
     data () {
@@ -30,6 +32,14 @@ export default {
        }
     },
     methods : {
+        ...mapMutations([
+            'increment' 
+            // this.increment()를 this.$store.commit('increment')에 매핑합니다.
+        ]),
+        ...mapMutations({
+            add: 'increment' 
+            // this.add()를 this.$store.commit('increment')에 매핑합니다.
+        }),
         login(){
           alert(`${this.userid} ,  ${this.passwd}`)
           let url = `${ this.$store.state.context}/login`
@@ -47,7 +57,7 @@ export default {
           .then(res=>{
               if(res.data.result === "SUCCESS"){
                 this.$store.state.person = res.data.person
-                this.$store.state.authCheck = true
+                this.$store.commit(Constant.IS_AUTH, true)
                 
                 alert(`스토어에 저장성공 ${this.$store.state.authCheck}`)
                 if(this.$store.state.person.role !== 'student'){

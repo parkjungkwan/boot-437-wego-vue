@@ -8,7 +8,9 @@ export default {
 				{menu:"학생성적수정",link:"/update"},
 				{menu:"ID 학생검색",link:"/studentFindOne"}
 			],
-		authCheck: false,
-		headerMessage: '공통 화면'
+		isAuth: false,
+		headerMessage: '공통 화면',
+		errorState: ''
 	}
 }
+
