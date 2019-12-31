@@ -2,7 +2,11 @@
 import Constant from '@/store/mutation_types'
 import axios from 'axios'
 const state = {
-	person: {}
+    person: {},
+    sidebars : [
+                {menu:"내정보",link:"/student/mypage"},
+                {menu:"비번변경",link:"/student/update/passwd"}
+			],
 }
 const getters = {
 	getPerson: state => state.person
