@@ -1,8 +1,14 @@
-import axios from 'axios'
+//import loginAPI from '@/api/loginAPI'
 import Constant from '@/store/mutation_types'
-export default {
-  action : {
-    login(){
+import axios from 'axios'
+const state = {
+	person: {}
+}
+const getters = {
+	getPerson: state => state.person
+}
+const actions = {
+	async login(){
             alert(`${this.userid} ,  ${this.passwd}`)
             let url = `${ this.$store.state.context}/login`
             let data = {
@@ -42,7 +48,7 @@ export default {
             })  
             
           },
-          join(){
+      async join(){
               let url = `${this.context}/join`
               let data = {
                   userid : this.userid,
@@ -59,11 +65,7 @@ export default {
               .post(url, data, headers)
               .then(res=>{
                   if(res.data.result==="SUCCESS"){
-                      this.$store.state.userid = res.data.person.userid
-                      this.$store.state.passwd = res.data.person.passwd
-                      this.$store.state.name = res.data.person.name
-                      this.$store.state.birthday = res.data.person.birthday
-                      this.$store.state.id = res.data.person.id
+                      this.$store.commit(Constant.PERSON, res.data.person)
                       this.$router.push({path : '/mypage'})
                   }else{
             this.$router.push({path : '/join'})
@@ -73,6 +75,20 @@ export default {
                   alert(`axios 실패!`)
               })
           }
-  }
-  
+}
+const mutations = {
+    LOGIN (state, person) {
+        state.person = person
+    },
+    LOGOUT (state) {
+        state.person = null
+    },
+}
+
+export default {
+  namespaced: true,
+  state,
+  getters,
+  actions,
+  mutations
 }

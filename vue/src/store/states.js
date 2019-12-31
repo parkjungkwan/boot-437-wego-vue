@@ -1,7 +1,7 @@
 export default {
 	state: {
 		context: 'http://localhost:8080/',
-		person: {},
+		
 		sidebars : [
                 {menu:"학생목록",link:"/students"},
                 {menu:"조건별 학생검색",link:"/studentsFindSome"},

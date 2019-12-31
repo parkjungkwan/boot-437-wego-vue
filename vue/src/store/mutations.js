@@ -1,9 +1,7 @@
 import * as types from '@/store/mutation_types'
 
 export default {
-  [types.PERSON] (state, person) {
-    state.person = person
-  },
+  
   [types.ERROR_STATE] (state, errorState) {
     state.errorState = errorState
   },
