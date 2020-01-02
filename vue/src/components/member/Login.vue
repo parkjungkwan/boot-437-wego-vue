@@ -20,22 +20,24 @@
 </div>
 </template>
 <script>
-import {mapActions} from 'vuex'
+/* import {mapActions} from 'vuex' */
 export default {
     name: 'login',
-    data () {
-       return {
-           userid: '',
-           passwd: ''
-       }
+    data(){
+        return {
+            ctx: this.$store.state.common.context
+        }
+        
     },
     methods : {
-        onSubmit(userid, passwd){
-			alert('로그인 아이디 : '+userid+'로그인 비번 : '+passwd)
+        onSubmit(uid, pwd){
+            this.$store.dispatch('admin/login', {userid:uid, passwd:pwd, context: this.ctx})
+            
         },
-        ...mapActions('auth',['authenticate'])
+        /* ...mapActions('admin/login') */
         
     }
+    
 }
 </script>
 <style scoped>

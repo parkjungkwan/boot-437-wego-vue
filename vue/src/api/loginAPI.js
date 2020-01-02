@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const getUserInfo = (uid, password) => {
-  return axios.get('/endpoint-for-get-user-info', {
+  return axios.get('/test', {
     params: {
       'uid': uid,
       'password': password

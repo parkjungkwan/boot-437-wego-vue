@@ -1,4 +1,4 @@
-import loginAPI from '@/service/loginAPI'
+import loginAPI from '@/api/loginAPI'
 
 export default {
   async login (uid, password) {

@@ -1,6 +1,8 @@
 //import loginAPI from '@/api/loginAPI'
 import Constant from '@/store/modules/mutation_types'
 import axios from 'axios'
+import router from '@/router'
+import api from '@/api'
 const state = {
     person: {},
     sidebars : [
@@ -13,8 +15,11 @@ const getters = {
 	getPerson: state => state.person
 }
 const actions = {
-	async login(){
+	async student_login({commit, state}){
             alert(`${this.userid} ,  ${this.passwd}`)
+            api.login(state.userid, state.passwd)
+            .then(data => commit('login', data.data))
+            .then(()=>{router.push({name: 'home'})})
             let url = `${ this.$store.state.context}/login`
             let data = {
                 userid: this.userid,

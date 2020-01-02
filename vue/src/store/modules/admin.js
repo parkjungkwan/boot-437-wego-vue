@@ -14,13 +14,11 @@ const getters = {
 	getAdmin: state => state.admin
 }
 const actions = {
-	async login(){
-            alert(`${this.userid} ,  ${this.passwd}`)
-            let url = `${ this.$store.state.context}/login`
-            let data = {
-                userid: this.userid,
-                passwd: this.passwd
-            }
+	async login(self,data){
+            alert(`테스트 ${self} ,  ${data.userid},${data.passwd}` )
+            
+            let url = `${data.context}login`
+            alert('>>>>>>'+url)
             let headers = {
                 'authorization': 'JWT fefege..',
                 'Accept' : 'application/json',
