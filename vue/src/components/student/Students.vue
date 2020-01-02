@@ -39,6 +39,10 @@ export default{
 			pageCount: 5
 		}
 	},
+	methods : {
+		prevPage(){},
+		nextPage(){}
+	},
 	created(){
 		axios
 		.get(`${this.context}/students`)

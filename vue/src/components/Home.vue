@@ -6,7 +6,12 @@
 				<component :is="!loginCheck ? 'pre-auth' : 'post-auth'"></component>
 			</template>
 			<template #sidebar="sidebar">
-				<component :is="sidebarCheck"></component>
+				<!-- <component :is="sidebarCheck"></component> -->
+				<ul v-if="loginCheck" class="menu" >
+					<li v-for="sidebar of sidebarCheck" :key="sidebar.menu">
+						<router-link :to='sidebar.link'>{{sidebar.menu}}</router-link>
+					</li>
+				</ul>	
 			</template>
 			<template #content="content"><router-view/></template>
 			<template #footer="footer">{{footer.title}}</template>
@@ -20,7 +25,6 @@ import PreAuth from "@/components/cmm/PreAuth.vue"
 import ManagerSidebar from "@/components/cmm/ManagerSidebar.vue"
 import PreSidebar from "@/components/cmm/PreSidebar.vue"
 import StudentSidebar from "@/components/cmm/StudentSidebar.vue"
-import { store } from "@/store"
 
  
 
@@ -31,10 +35,10 @@ export default{
 	computed:{
 		
 		loginCheck: function(){
-			return store.state.authCheck
+			return this.$store.state.admin.isAuth
 		},
 		sidebarCheck: function(){
-			return this.$store.state.common.sidebars
+			return this.$store.state.admin.sidebars
 		}
 		
 	}

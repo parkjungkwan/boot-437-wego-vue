@@ -24,14 +24,13 @@ export default {
      },
      computed: {
           changeMessage: function () {
-               alert('>>> '+this.$store.state.common.isAuth)
-               let a = ''
+               alert('>>> '+this.$store.state.admin.isAuth)
                if(this.$store.state.common.isAuth){
-                    a = '로그인후'
+                    alert('로그인후')
                }else{
-                    a = '로그인전'
+                    alert('로그인전')
                }
-               return a
+               return this.$store.state.admin.header
           },
           changeSidebars: function(){
                return this.$store.state.common.changeSidebars

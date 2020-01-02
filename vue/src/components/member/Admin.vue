@@ -22,6 +22,11 @@ export default{
 		}
 		
 	}
+     /*created(){
+          
+        this.$emit(changeSidebars,'test')
+          
+     }*/
 }
 </script>
 <style scoped>

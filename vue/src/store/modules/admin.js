@@ -8,10 +8,14 @@ const state = {
                 {menu:"조건별 학생검색",link:"/studentsFindSome"},
 				{menu:"학생성적수정",link:"/update"},
 				{menu:"ID 학생검색",link:"/studentFindOne"}
-			],
+            ],
+    isAuth : '',
+    header : '로그인전'
 }
 const getters = {
-	getAdmin: state => state.admin
+    getAdmin: state => state.admin,
+    getIsAuth : state => state.isAuth,
+    getHeader : state => state.header
 }
 const actions = {
 	login({commit},{context, userid, passwd}){
@@ -61,13 +65,12 @@ const actions = {
 }
 const mutations = {
     LOGIN (state, data) {
-        alert(`>>> ${data.result}`)
-        state.isAuth = Boolean(data.result)
-        state.headerMessage = '테스'
-        state.admin = data
+        state.isAuth = data.result
+        state.admin = data.person
+        state.header = '로그인후'
     },
     LOGOUT (state) {
-        state.person = null
+        state.admin = {}
     },
 }
 

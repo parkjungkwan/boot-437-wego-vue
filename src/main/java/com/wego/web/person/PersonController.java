@@ -49,14 +49,16 @@ public class PersonController {
 				param.getUserid(), 
 				param.getPasswd());
 		if(person != null) {
-			printer.accept("로그인 성공");
-			map.put("result", "SUCCESS");
+			printer.accept("로그인 2020 성공");
+			map.put("result", "True");
 			map.put("person", person);
+			
 		}else {
 			printer.accept("로그인 실패");
-			map.put("result", "FAIL");
+			map.put("result", "False");
 			map.put("person", person);
 		}
+		System.out.println(map);
 		return map;
 	}
 	@DeleteMapping("/withdrawal/{userid}")
