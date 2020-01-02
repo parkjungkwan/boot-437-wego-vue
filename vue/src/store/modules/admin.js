@@ -14,40 +14,18 @@ const getters = {
 	getAdmin: state => state.admin
 }
 const actions = {
-	async login(self,data){
-            alert(`테스트 ${self} ,  ${data.userid},${data.passwd}` )
+	login({commit},{context, userid, passwd}){
+            alert(`${context},${userid},${passwd}` )
             
-            let url = `${data.context}login`
-            alert('>>>>>>'+url)
+            let url = `${context}login`
             let headers = {
                 'authorization': 'JWT fefege..',
                 'Accept' : 'application/json',
                 'Content-Type': 'application/json'
             }
             axios
-            .post(url, data, headers)
-            .then(res=>{
-                if(res.data.result === "SUCCESS"){
-                  alert(`로그인 2020 성공`)
-                  /*this.$store.commit(Constant.PERSON, res.data.person)
-                  this.$store.commit(Constant.IS_AUTH, true)
-                  
-                  alert(`스토어에 저장성공 ${this.$store.state.authCheck}`)
-                  if(this.$store.state.person.role !== 'student'){
-                      this.$store.commit(Constant.SIDEBAR, 'managerSidebar')
-                      this.$store.commit(Constant.HEADER_MESSAGE, '관리자화면')
-                      this.$router.push({path: '/admin'})
-                  }else{
-                      this.$store.commit(Constant.SIDEBAR, 'studentSidebar')
-                      this.$store.commit(Constant.HEADER_MESSAGE, '학생화면')
-                      this.$router.push({path: '/myPage'})
-                  }*/
-                  
-                }else{
-                  alert(`로그인실패`)
-                  this.$router.push({path: '/login'})
-                }
-            })
+            .post(url, {userid, passwd}, headers)
+            .then(({data})=>{commit('LOGIN',data)})
             .catch(()=>{
                 alert('AXIOS 실패')
             })  
@@ -82,8 +60,11 @@ const actions = {
           }
 }
 const mutations = {
-    LOGIN (state, person) {
-        state.person = person
+    LOGIN (state, data) {
+        alert(`>>> ${data.result}`)
+        state.isAuth = Boolean(data.result)
+        state.headerMessage = '테스'
+        state.admin = data
     },
     LOGOUT (state) {
         state.person = null

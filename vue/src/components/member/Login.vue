@@ -25,16 +25,22 @@ export default {
     name: 'login',
     data(){
         return {
-            ctx: this.$store.state.common.context
+            ctx: this.$store.state.common.context,
+            msg: ''
         }
         
     },
     methods : {
         onSubmit(uid, pwd){
             this.$store.dispatch('admin/login', {userid:uid, passwd:pwd, context: this.ctx})
+            .then(()=>this.redirect())
+            .catch(({message})=>this.msg = message)
             
         },
         /* ...mapActions('admin/login') */
+        redirect(){
+            this.$router.push(`/admin`)
+        }
         
     }
     
