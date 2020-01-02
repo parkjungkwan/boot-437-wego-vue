@@ -1,6 +1,6 @@
 <template>
     <div class="login-form">
-    <form>
+    <form method="post" @submit.prevent="onSubmit(userid, passwd)">
         <h2 class="text-center">Log in</h2>       
         <div class="form-group">
             <input v-model="userid" type="text" class="form-control" placeholder="Username" required="required">
@@ -9,7 +9,7 @@
             <input v-model="passwd" type="password" class="form-control" placeholder="Password" required="required">
         </div>
         <div class="form-group">
-            <button @click.prevent="login" type="submit" class="btn btn-primary btn-block">Log in</button>
+            <button type="submit" class="btn btn-primary btn-block">Log in</button>
         </div>
         <div class="clearfix">
             <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>
@@ -20,9 +20,9 @@
 </div>
 </template>
 <script>
-import { mapMutations } from 'vuex'
-
+import {mapActions} from 'vuex'
 export default {
+    name: 'login',
     data () {
        return {
            userid: '',
@@ -30,25 +30,12 @@ export default {
        }
     },
     methods : {
-        ...mapMutations([
-            'increment' 
-            // this.increment()를 this.$store.commit('increment')에 매핑합니다.
-        ]),
-        ...mapMutations({
-            add: 'increment' 
-            // this.add()를 this.$store.commit('increment')에 매핑합니다.
-        })
+        onSubmit(userid, passwd){
+			alert('로그인 아이디 : '+userid+'로그인 비번 : '+passwd)
+        },
+        ...mapActions('auth',['authenticate'])
         
-    },
-	computed:{
-		loginCheck: function(){
-			return this.$store.state.authCheck
-		},
-		sidebarCheck: function(){
-			return this.$store.state.sidebars
-		}
-		
-	}
+    }
 }
 </script>
 <style scoped>

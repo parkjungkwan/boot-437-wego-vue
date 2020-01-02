@@ -22,7 +22,11 @@
   <div class="text-center">Already have an account? <a href="#">Sign in</a></div>
 </div>
 </template>
-
+<script>
+export default {
+  name: 'join',
+}
+</script>
 <style scoped>
 body{
     color: #fff;

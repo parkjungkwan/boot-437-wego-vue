@@ -21,6 +21,7 @@
 
 import {store} from "../../store"
 export default{
+  name: 'myPageUpdate',
 	data(){
 		return {
       context : 'http://localhost:8080/',
