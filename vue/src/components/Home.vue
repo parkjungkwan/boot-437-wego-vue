@@ -29,11 +29,12 @@ export default{
 	ManagerSidebar, PreSidebar, StudentSidebar
 	},
 	computed:{
+		
 		loginCheck: function(){
 			return store.state.authCheck
 		},
 		sidebarCheck: function(){
-			return store.state.sidebar
+			return this.$store.state.common.sidebars
 		}
 		
 	}

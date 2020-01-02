@@ -25,8 +25,11 @@ export default {
      computed: {
           changeMessage: function () {
                return this.$store.state.common.headerMessage
+          },
+          changeSidebars: function(){
+               return this.$store.state.common.changeSidebars
+          }
      }
-  }
 }
 </script>
 <style scoped>
