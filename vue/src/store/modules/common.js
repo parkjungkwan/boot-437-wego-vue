@@ -6,11 +6,11 @@ const state = {
 	errorState: ''
 }
 const getters = {
-	getErrorState: state => state.errorState,
-    getIsAuth: state => state.isAuth,
-    getContext: state => state.context,
-    getSidebars: state => state.sidebars,
-    getHeaderMessage: state => state.headerMessage
+  getErrorState: state => state.errorState,
+  getIsAuth: state => state.isAuth,
+  getContext: state => state.context,
+  getSidebars: state => state.sidebars,
+  getHeaderMessage: state => state.headerMessage
 }
 const actions = {}
 const mutations = {
@@ -31,6 +31,7 @@ const mutations = {
   }
 }
 export default {
+  name: 'common',
 	namespaced : true,
 	state,
 	getters,

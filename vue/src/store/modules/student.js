@@ -1,12 +1,13 @@
 //import loginAPI from '@/api/loginAPI'
-import Constant from '@/store/mutation_types'
+import Constant from '@/store/modules/mutation_types'
 import axios from 'axios'
 const state = {
     person: {},
     sidebars : [
                 {menu:"내정보",link:"/student/mypage"},
                 {menu:"비번변경",link:"/student/update/passwd"}
-			],
+            ],
+            userid : '',
 }
 const getters = {
 	getPerson: state => state.person
@@ -90,6 +91,7 @@ const mutations = {
 }
 
 export default {
+  name: 'student',
   namespaced: true,
   state,
   getters,
