@@ -2,8 +2,10 @@ package com.wego.web.person;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +60,7 @@ public class PersonController {
 			map.put("result", "False");
 			map.put("person", person);
 		}
-		System.out.println(map);
+		System.out.println();
 		return map;
 	}
 	@DeleteMapping("/withdrawal/{userid}")
@@ -68,7 +70,7 @@ public class PersonController {
 				.findByUserid(userid));
 	}
 	@GetMapping("/students")
-	public Stream<Person> list(){
+	public List<Person> list(){
 		//Iterable<Person> entites=personRepository.findByRole("student"); 
 		Iterable<Person> entites = personRepository.findAll();
 		List<Person> list = new ArrayList<>();
@@ -76,8 +78,11 @@ public class PersonController {
 			Person dto = modelMapper.map(p, Person.class);
 			list.add(dto);
 		}
+		list.stream()
+			.filter(role-> role.getRole().equals("student"));
 		return list.stream()
-				.filter(role-> role.getRole().equals("student"));
+				.sorted(Comparator.comparing(Person::getPersonid)
+						.reversed()).collect(Collectors.toList());
 		
 	}
 	
