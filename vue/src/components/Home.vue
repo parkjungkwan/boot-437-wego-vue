@@ -11,7 +11,8 @@
 					<li v-for="sidebar of sidebarCheck" :key="sidebar.menu">
 						<router-link :to='sidebar.link'>{{sidebar.menu}}</router-link>
 					</li>
-				</ul>	
+				</ul>
+					
 			</template>
 			<template #content="content"><router-view/></template>
 			<template #footer="footer">{{footer.title}}</template>
