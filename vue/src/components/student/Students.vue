@@ -17,15 +17,18 @@
 	<td>{{j.role}}</td>
 	</tr>
 	</table>
-	<div class="btn-cover">
+	
+	<div class="btn-cover" >
       <button :disabled="pageNum === 0" @click="prevPage" class="page-btn">
         이전
       </button>
-      <span class="page-count">{{ pageNum + 1 }} </span>
+
+      <span v-for="(j, i) of pages" :key="i+1" class="page-count">{{ i+1 }} </span>
       <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn">
         다음
       </button>
 	</div>
+	
 </div>	
 </template>
 <script>
@@ -33,10 +36,11 @@ import axios from 'axios'
 export default{
 	data(){
 		return {
-			context: 'http://localhost:8080/',
+			ctx: this.$store.state.common.context,
 			list: [],
 			pageNum: 0,
-			pageCount: 5
+			pageCount: 5,
+			pages: []
 		}
 	},
 	methods : {
@@ -45,9 +49,15 @@ export default{
 	},
 	created(){
 		axios
-		.get(`${this.context}/students`)
+		.get(`${this.ctx}/students`)
 		.then(res =>{
-			this.list = res.data
+			let arr = []
+			for(let i = 1; i< res.data.length/5; i++){
+				arr.push(i)
+			}
+			
+			this.pages = arr
+			this.list = res.data.slice(0,5)
 		})
 		.catch(e=>{
 			alert('AXIOS FAIL'+e)
