@@ -28,7 +28,8 @@ const actions = {
             .post(url, data, headers)
             .then(res=>{
                 if(res.data.result === "SUCCESS"){
-                  this.$store.commit(Constant.PERSON, res.data.person)
+                  alert(`로그인 2020 성공`)
+                  /*this.$store.commit(Constant.PERSON, res.data.person)
                   this.$store.commit(Constant.IS_AUTH, true)
                   
                   alert(`스토어에 저장성공 ${this.$store.state.authCheck}`)
@@ -40,7 +41,7 @@ const actions = {
                       this.$store.commit(Constant.SIDEBAR, 'studentSidebar')
                       this.$store.commit(Constant.HEADER_MESSAGE, '학생화면')
                       this.$router.push({path: '/myPage'})
-                  }
+                  }*/
                   
                 }else{
                   alert(`로그인실패`)
